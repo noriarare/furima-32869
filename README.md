@@ -1,24 +1,39 @@
-# README
+## usersテーブル
+|column           |Type  |Options |
+|-----------------|------|--------|
+|email            |string|NOT NULL|
+|password         |string|NOT NULL|
+|last_name_kanji  |string|NOT NULL|
+|first_name_kanji |string|NOT NULL|
+|last_name_kana   |string|NOT NULL|
+|first_name_kana  |string|NOT NULL|
+|nickname         |string|NOT NULL|
+|birthday         |string|NOT NULL|
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## itemsテーブル
+|column    |Type         |Options |
+|----------|-------------|--------|
+|item_name |text         |NOT NULL|
+|catch_copy|text         |NOT NULL|
+|price     |string       |NOT NULL|
+|day       |string       |NOT NULL|
+|form      |string       |NOT NULL|
+|status    |text         |NOT NULL|
+|category  |text         |NOT NULL|
+|image     |ActiveStorage|        |
+|user      |references   |        |
+|purchase  |references   |        |
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## purchasesテーブル
+|column      |Type        |Options |
+|------------|------------|--------|
+|address     |string      |NOT NULL|
+|post        |string      |NOT NULL|
+|prefectures |string      |NOT NULL|
+|municipality|string      |NOT NULL|
+|house_number|string      |NOT NULL|
+|building    |string      |NOT NULL|
+|tel         |string      |NOT NULL|
+|credit      |string      |unique  |
+|security    |string      |NOT NULL|
+|item        |references  |        |
