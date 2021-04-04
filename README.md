@@ -37,3 +37,4 @@
 |credit      |string      |unique  |
 |security    |string      |NOT NULL|
 |item        |references  |        |
+|user        |references  |        |
