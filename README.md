@@ -34,6 +34,6 @@
 |house_number|string      |NOT NULL|
 |building    |string      |NOT NULL|
 |tel         |string      |NOT NULL|
-|credit      |string      |NOT NULL|
+|credit      |string      |unique  |
 |security    |string      |NOT NULL|
 |item        |references  |        |
