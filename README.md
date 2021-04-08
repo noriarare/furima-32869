@@ -1,40 +1,37 @@
 ## usersテーブル
-|column           |Type  |Options |
-|-----------------|------|--------|
-|email            |string|NOT NULL|
-|password         |string|NOT NULL|
-|last_name_kanji  |string|NOT NULL|
-|first_name_kanji |string|NOT NULL|
-|last_name_kana   |string|NOT NULL|
-|first_name_kana  |string|NOT NULL|
-|nickname         |string|NOT NULL|
-|birthday         |string|NOT NULL|
+|column            |Type   |Options |
+|------------------|-------|--------|
+|email             |unique |NOT NULL|
+|encrypted_password|string |NOT NULL|
+|last_name_kanji   |string |NOT NULL|
+|first_name_kanji  |string |NOT NULL|
+|last_name_kana    |string |NOT NULL|
+|first_name_kana   |string |NOT NULL|
+|nickname          |string |NOT NULL|
+|birthday          |date   |NOT NULL|
+|address           |string |NOT NULL|
+|post              |string |NOT NULL|
+|prefectures_id    |integer|NOT NULL|
+|municipality      |string |NOT NULL|
+|house_number      |string |NOT NULL|
+|building          |string |        |
+|tel               |string |NOT NULL|
 
 ## itemsテーブル
-|column    |Type         |Options |
-|----------|-------------|--------|
-|item_name |text         |NOT NULL|
-|catch_copy|text         |NOT NULL|
-|price     |string       |NOT NULL|
-|day       |string       |NOT NULL|
-|form      |string       |NOT NULL|
-|status    |text         |NOT NULL|
-|category  |text         |NOT NULL|
-|image     |ActiveStorage|        |
-|user      |references   |        |
-|purchase  |references   |        |
+|column     |Type         |Options |
+|-----------|-------------|--------|
+|item_name  |text         |NOT NULL|
+|catch_copy |text         |NOT NULL|
+|price      |integer      |NOT NULL|
+|day_id     |integer      |NOT NULL|
+|from_id    |integer      |NOT NULL|
+|status_id  |integer      |NOT NULL|
+|category_id|integer      |NOT NULL|
+|user       |references   |        |
+|purchase   |references   |        |
 
-## purchasesテーブル
-|column      |Type        |Options |
-|------------|------------|--------|
-|address     |string      |NOT NULL|
-|post        |string      |NOT NULL|
-|prefectures |string      |NOT NULL|
-|municipality|string      |NOT NULL|
-|house_number|string      |NOT NULL|
-|building    |string      |NOT NULL|
-|tel         |string      |NOT NULL|
-|credit      |string      |unique  |
-|security    |string      |NOT NULL|
-|item        |references  |        |
-|user        |references  |        |
+## mediationテーブル
+|column        |Type        |Options |
+|--------------|------------|--------|
+|item          |references  |        |
+|user          |references  |        |
