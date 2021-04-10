@@ -1,37 +1,58 @@
 ## usersテーブル
-|column            |Type   |Options |
-|------------------|-------|--------|
-|email             |unique |NOT NULL|
-|encrypted_password|string |NOT NULL|
-|last_name_kanji   |string |NOT NULL|
-|first_name_kanji  |string |NOT NULL|
-|last_name_kana    |string |NOT NULL|
-|first_name_kana   |string |NOT NULL|
-|nickname          |string |NOT NULL|
-|birthday          |date   |NOT NULL|
-|address           |string |NOT NULL|
-|post              |string |NOT NULL|
-|prefectures_id    |integer|NOT NULL|
-|municipality      |string |NOT NULL|
-|house_number      |string |NOT NULL|
-|building          |string |        |
-|tel               |string |NOT NULL|
+|column            |Type   |Options     |
+|------------------|-------|------------|
+|email             |string |uniqure:true|
+|encrypted_password|string |null:false  |
+|last_name_kanji   |string |null:false  |
+|first_name_kanji  |string |null:false  |
+|last_name_kana    |string |null:false  |
+|first_name_kana   |string |null:false  |
+|nickname          |string |null:false  |
+|birthday          |date   |null:false  |
+
+### Assosiation
+- has_many :mediations
+- belongs_to :addresses
 
 ## itemsテーブル
-|column     |Type         |Options |
-|-----------|-------------|--------|
-|item_name  |text         |NOT NULL|
-|catch_copy |text         |NOT NULL|
-|price      |integer      |NOT NULL|
-|day_id     |integer      |NOT NULL|
-|from_id    |integer      |NOT NULL|
-|status_id  |integer      |NOT NULL|
-|category_id|integer      |NOT NULL|
-|user       |references   |        |
-|purchase   |references   |        |
+|column     |Type      |Options                     |
+|-----------|----------|----------------------------|
+|item_name  |string    |null:false                  |
+|catch_copy |text      |null:false                  |
+|price      |integer   |null:false                  |
+|day_id     |integer   |null:false                  |
+|shipping_id|integer   |null:false                  |
+|from_id    |integer   |null:false                  |
+|status_id  |integer   |null:false                  |
+|category_id|integer   |null:false                  |
+|mediation  |references|null:false,foreign_key: true|
 
-## mediationテーブル
-|column        |Type        |Options |
-|--------------|------------|--------|
-|item          |references  |        |
-|user          |references  |        |
+
+### Assosiation
+- belong_to :mediations
+- belong_to :addresses
+
+## mediationsテーブル
+|column        |Type        |Options                     |
+|--------------|------------|----------------------------|
+|item          |references  |null:false,foreign_key: true|
+|user          |references  |null:false,foreign_key: true|
+
+### Assosiation
+- has_many :users
+- has_many :items
+
+## addressesテーブル
+|column        |Type   |Options   |
+|--------------|-------|----------|
+|address       |string |null:false|
+|post          |string |null:false|
+|prefectures_id|integer|null:false|
+|municipality  |string |null:false|
+|house_number  |string |null:false|
+|building      |string |          |
+|tel           |string |null:false|
+
+### Assosiation
+- has_one :users
+- has_one :items
