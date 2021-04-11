@@ -1,7 +1,7 @@
 ## usersテーブル
-|column            |Type   |Options     |
-|------------------|-------|------------|
-|email             |string |uniqure:true,null:false|
+|column            |Type   |Options                |
+|------------------|-------|-----------------------|
+|email             |string |unique:true,null:false |
 |encrypted_password|string |null:false             |
 |last_name         |string |null:false             |
 |first_name        |string |null:false             |
