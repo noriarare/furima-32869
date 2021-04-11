@@ -28,8 +28,8 @@
 |user       |references|null:false,foreign_key: true|
 
 ### Assosiation
-- has_to :histories
-- belongs_to :users
+- has_one :history
+- belongs_to :user
 
 ## historiesテーブル
 |column        |Type        |Options                     |
@@ -38,9 +38,9 @@
 |user          |references  |null:false,foreign_key: true|
 
 ### Assosiation
-- has_many :users
-- belongs_to :items
-- has_one ;addresses
+- belongs_to :user
+- belongs_to :item
+- has_one ;address
 
 ## addressesテーブル
 |column        |Type      |Options                     |
@@ -55,4 +55,4 @@
 |histories     |references|null:false,foreign_key: true|
 
 ### Assosiation
-- belongs_to :histories
+- belongs_to :history
