@@ -40,7 +40,7 @@
 ### Assosiation
 - belongs_to :user
 - belongs_to :item
-- has_one ;address
+- has_one :address
 
 ## addressesテーブル
 |column        |Type      |Options                     |
@@ -52,7 +52,7 @@
 |house_number  |string    |null:false                  |
 |building      |string    |                            |
 |tel           |string    |null:false                  |
-|histories     |references|null:false,foreign_key: true|
+|history       |references|null:false,foreign_key: true|
 
 ### Assosiation
 - belongs_to :history
