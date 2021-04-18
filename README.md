@@ -17,7 +17,7 @@
 ## itemsテーブル
 |column     |Type      |Options                     |
 |-----------|----------|----------------------------|
-|name　　　  |string    |null:false                  |
+|name       |string    |null:false                  |
 |catch_copy |text      |null:false                  |
 |price      |integer   |null:false                  |
 |day_id     |integer   |null:false                  |
