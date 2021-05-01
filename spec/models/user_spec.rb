@@ -12,13 +12,8 @@ RSpec.describe User, type: :model do
           expect(@user).to be_valid
         end
         it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
-          @user.password = '123456'
-          @user.password_confirmation = '123456'
-          expect(@user).to be_valid
-        end
-        it 'password:半角英数混合であれば登録できる' do
-          @user.password = 'a0a0a0'
-          @user.password_confirmation = 'a0a0a0'
+          @user.password = 'a1b2c3'
+          @user.password_confirmation = 'a1b2c3'
           expect(@user).to be_valid
         end
       end
@@ -40,23 +35,34 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include("Password can't be blank")
         end
         it 'passwordが存在してもpassword_confirmationが空では登録でき無し' do
-          @user.password = 'a0a0a0'
+          @user.password = 'a1b2c3'
           @user.password_confirmation = ''
           @user.valid?
           expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
         it "passwordが5文字以下であれば登録できないこと" do
-          @user.password = '12345'
-          @user.password_confirmation = '12345'
+          @user.password = 'a1b2c'
+          @user.password_confirmation = 'a1b2c'
           @user.valid?
           expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
         end
-        
         it "passwordとpassword_confirmationが不一致では登録できないこと" do
-          @user.password = "123456"
-          @user.password_confirmation = "1234567"
+          @user.password = "a1b2c3"
+          @user.password_confirmation = "a1b2c3d"
           @user.valid?
           expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        end
+        it "passwordが英数半角(英字のみ)を含まないと登録できないこと" do
+          @user.password = 'aaaaaa'
+          @user.password_confirmation = "aaaaaa"
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+        end
+        it "passwordが英数半角(数字のみ)を含まないと登録できないこと" do
+          @user.password = '123456'
+          @user.password_confirmation = "123456"
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
         end
         it 'last_nameが空では登録できないこと' do
           @user.last_name = ''
