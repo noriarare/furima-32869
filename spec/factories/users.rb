@@ -12,6 +12,6 @@ FactoryBot.define do
     first_name {Faker::Name.initials(number: 4)}
     last_name_kana {person.last.katakana}
     first_name_kana {person.first.katakana}
-    birthday {Faker::Date.between(from: 70.years.ago,to:Date.today)}
+    birthday {Faker::Date.between(from: 120.years.ago,to:Date.today)}
   end
 end
