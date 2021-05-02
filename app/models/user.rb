@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   #フルネーム、漢字、平仮名、カタカナ
-  with_options presence:true,format:{with: /\A[ぁ-んァ-ン一-龥]/,message:"is not used kanji,hiragana,katakana"} do
+  with_options presence:true,format:{with: /\A[ぁ-んァ-ン一-龥々]/,message:"is not used kanji,hiragana,katakana"} do
     validates :last_name
     validates :first_name
   end
