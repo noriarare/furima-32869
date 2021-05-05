@@ -123,7 +123,12 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <%# ログインしてる人は新規登録商品してない人はログイン画面%>
+    <% if user_signed_in? %>
+      <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
+    <% else %>
+      <%= link_to '新規投稿商品', user_session_path, class: "subtitle" %>
+    <% end %>
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
@@ -180,8 +185,11 @@
   </div>
   <%# /商品一覧 %>
 </div>
-<%= link_to('#', class: 'purchase-btn') do %>
-  <span class='purchase-btn-text'>出品する</span>
-  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+<%# ログイン時に表示される出品ボタン%>
+<% if user_signed_in? %>
+  <%= link_to(new_item_path, class: 'purchase-btn') do %>
+    <span class='purchase-btn-text'>出品する</span>
+    <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+  <% end %>
 <% end %>
 <%= render "devise/shared/footer" %>
