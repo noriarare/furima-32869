@@ -3,14 +3,18 @@ class Item < ApplicationRecord
   belongs_to :user
 
   #各itemカラム
-  validates :name, presence: true
-  validates :catch_copy, presence: true
-  validates :price, presence: true, inclusion: {in: 300..9999999}, format: {with: /\A[0-9]+\z/}#,message:"must be used half-width number and suitable price"}
-  validates :day_id,presence:true, numericality: { other_than: 1 }
-  validates :shipping_id,presence:true, numericality: { other_than: 1 }
-  validates :from_id,presence:true, numericality: { other_than: 1 }
-  validates :status_id,presence:true, numericality: { other_than: 1 }
-  validates :category_id,presence:true, numericality: { other_than: 1 }
+  with_options presence:true do
+    validates :name
+    validates :catch_copy
+    validates :price, inclusion: {in: 300..9999999}, format: {with: /\A[0-9]+\z/}#,message:"must be used half-width number and suitable price"}
+  end
+  with_options presence:true, numericality: { other_than: 1 } do
+    validates :day_id
+    validates :shipping_id
+    validates :from_id
+    validates :status_id
+    validates :category_id
+  end
 
   has_one_attached :image
   validates :image,presence:true
