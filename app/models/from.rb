@@ -51,6 +51,6 @@ class From < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :itemsend
+  has_many :items
 
 end
