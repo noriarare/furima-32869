@@ -23,22 +23,22 @@
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
+    <%# ログインしているユーザー %>
     <% if user_signed_in?%>
+      <%# サイト利用者と出品者が同じ%>
       <% if current_user.id == @item.user.id %>
         <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+      <%# サイト利用者と出品者が違う%>
       <% else %>
         <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
       <% end %>
     <% end %>
 
-
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-
+    <%# 商品詳細 %>
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.catch_copy %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -104,7 +104,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
