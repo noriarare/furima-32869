@@ -77,6 +77,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Tel is invalid")
       end
+      it '電話番号telが11桁を超えると登録できない' do
+        @order_address.tel = '090123456789'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Tel is invalid")
+      end
       #トークンtoken
       it 'トークンが空だと登録できない' do
         @order_address.token = ''

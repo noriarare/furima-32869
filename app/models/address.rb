@@ -8,7 +8,7 @@ class Address < ApplicationRecord
     validates :post,format:{with: /\A\d{3}[-]\d{4}\z/}
     validates :municipality
     validates :house_number
-    validates :tel,format:{with: /\A[0-9]+\z/}
+    validates :tel,format:{with: /\A[0-9]{10,11}+\z/}
   end
   #都道府県
   with_options presence:true, numericality: { other_than: 1 } do

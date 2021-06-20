@@ -7,7 +7,7 @@ class OrderAddress
     validates :post,format:{with: /\A\d{3}[-]\d{4}\z/}
     validates :municipality
     validates :house_number
-    validates :tel,format:{with: /\A[0-9]+\z/}
+    validates :tel,format:{with: /\A[0-9]{10,11}+\z/}
     validates :token
   end
 
