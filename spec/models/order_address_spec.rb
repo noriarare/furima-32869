@@ -45,7 +45,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("From can't be blank")
       end
       it '都道府県from_idが初期設定(1)では登録できない' do
-        @order_address.from_id = '1'
+        @order_address.from_id = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("From must be other than 1")
       end
@@ -87,6 +87,18 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.token = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      #user_id
+      it 'user_idが空だと登録できない' do
+        @order_address.user_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      #item_id
+      it 'item_idが空だと登録できない' do
+        @order_address.item_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

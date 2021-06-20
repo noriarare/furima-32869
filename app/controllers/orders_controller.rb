@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @user = current_user.id
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
@@ -42,10 +41,7 @@ class OrdersController < ApplicationController
   end
 
   def chenge_order
-    if @order_item[:user_id] == current_user.id
-      return redirect_to root_path
-    end
-    if @order_item.order.present?
+    if @order_item[:user_id] == current_user.id or @order_item.order.present?
       return redirect_to root_path
     end
   end
