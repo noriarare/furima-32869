@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
 
   belongs_to :user
+  has_one :order
 
   #各itemカラム
   with_options presence:true do

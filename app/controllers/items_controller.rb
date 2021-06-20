@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
   before_action :chenge_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.order(created_at: :desc)
+    #@items = Item.order(created_at: :desc)
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
