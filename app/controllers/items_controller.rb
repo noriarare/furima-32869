@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
   before_action :set_item, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :chenge_item, only: [:edit, :update, :destroy]
@@ -55,6 +56,9 @@ class ItemsController < ApplicationController
 
   def chenge_item
     redirect_to root_path unless current_user == @item.user
+    if @item.order.present?
+      return redirect_to root_path
+    end
   end
 
 end

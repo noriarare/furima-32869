@@ -2,11 +2,13 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    @item = {id: 1,name: "250TR",catch_copy: "250TR",price: "100000",day_id: 2,shipping_id: 2,from_id: 2,status_id: 2,category_id: 2,user_id: 2}
+    @order_address = FactoryBot.build(:order_address,user_id: @item[:user_id], item_id: @item[:id])
+
   end
 
   describe '購入機能' do
-    context '購入機能' do
+    context '購入機能できる時' do
       it 'token,post,form_id,municipality,house_number,telが存在すれば登録できる' do
         expect(@order_address).to be_valid
       end
