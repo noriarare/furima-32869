@@ -55,8 +55,9 @@ class ItemsController < ApplicationController
   end
 
   def chenge_item
-    redirect_to root_path unless current_user == @item.user
-    if @item.order.present?
+    #redirect_to root_path unless current_user == @item.user
+    # order通った商品は編集できない、
+    if @item.order.present? or current_user != @item.user
       return redirect_to root_path
     end
   end
