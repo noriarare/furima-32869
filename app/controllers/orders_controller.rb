@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
 
-  before_action :order_item
-  before_action :chenge_order
-  before_action :authenticate_user!
+  before_action :order_item, only: [:index, :create]
+  before_action :chenge_order, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
 
   def index
     @order_address = OrderAddress.new
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 環境設定より
       Payjp::Charge.create(
-        amount: @item[:price],  # 商品の値段
+        amount: @order_item[:price],  # 商品の値段
         card: order_params[:token],    # カードトークン
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
