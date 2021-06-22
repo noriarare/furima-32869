@@ -11,7 +11,7 @@
 |birthday          |date   |null:false             |
 
 ### Assosiation
-- has_many :histories
+- has_many :orders
 - has_many :items
 
 ## itemsテーブル
@@ -28,10 +28,10 @@
 |user       |references|null:false,foreign_key: true|
 
 ### Assosiation
-- has_one :history
+- has_one :orders
 - belongs_to :user
 
-## historiesテーブル
+## ordersテーブル
 |column        |Type        |Options                     |
 |--------------|------------|----------------------------|
 |item          |references  |null:false,foreign_key: true|
@@ -52,7 +52,7 @@
 |house_number  |string    |null:false                  |
 |building      |string    |                            |
 |tel           |string    |null:false                  |
-|history       |references|null:false,foreign_key: true|
+|order         |references|null:false,foreign_key: true|
 
 ### Assosiation
-- belongs_to :history
+- belongs_to :orders
